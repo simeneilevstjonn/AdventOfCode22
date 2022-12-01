@@ -1,0 +1,2 @@
+#print(sum(sorted(map(lambda x:sum(map(int,x.split("\n"))),open("data1.txt","r").read().split("\n\n")))[-3:]))
+print(sum(sorted([sum(map(int,i.split("\n")))for i in open("data1.txt","r").read().split("\n\n")])[-3:]))

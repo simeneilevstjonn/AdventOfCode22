@@ -1,0 +1,1 @@
+print(sum([3*(ord(a)==ord(b)-23)+6*((a=="A"and b=="Y")or(a=="B"and b=="Z")or(a=="C"and b=="X"))+(b=='X')+2*(b=='Y')+3*(b=='Z')for a,b in[i.split() for i in open("data2.txt","r").read().split("\n")]]))

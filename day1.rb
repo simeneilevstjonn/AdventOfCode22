@@ -1,1 +1,1 @@
-p gets(nil).split(/\n$/).map{|i|i.split.map(&:to_i).sum}.max(3).sum
+p `cat`.split(/\n$/).map{|i|i.split.map(&:to_i).sum}.max(3).sum

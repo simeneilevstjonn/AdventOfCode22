@@ -1,1 +1,1 @@
-p STDIN.each_line.each_slice(3).map{|x|a,b,d=x.map(&:bytes);c=(a&b&d)[0];c-(c<91?38:96)}.sum
+p STDIN.each_line.each_slice(3).map{|x|a,b,d=x.map(&:bytes);((a&b&d)[0]-96)%58}.sum

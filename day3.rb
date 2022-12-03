@@ -1,0 +1,1 @@
+p STDIN.each_line.map{|x|a=x.bytes;s=a.size/2;c=(a[..s]&a[s..])[0];c-(c<91?38:96)}.sum

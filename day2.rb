@@ -1,1 +1,1 @@
-p STDIN.sum{|x|a,_,b=x.bytes;3*b-263+(a+b-1)%3}
+p$<.sum{|x|a,_,b=x.bytes;3*b-263+(a+b-1)%3}

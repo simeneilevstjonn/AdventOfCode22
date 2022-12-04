@@ -1,1 +1,1 @@
-p STDIN.each_line.map{|x|a,_,b=x.bytes;3*b-263+(a+b-1)%3}.sum
+p STDIN.map{|x|a,_,b=x.bytes;3*b-263+(a+b-1)%3}.sum

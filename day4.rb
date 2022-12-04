@@ -1,1 +1,1 @@
-p STDIN.each_line.map{|x|a,b,c,d=x.split(/[\,,-]/).map(&:to_i);(((a..b).to_a&(c..d).to_a).any?)?1:0}.sum
+p STDIN.each_line.map{|x|a,b,c,d=x.split(/[\,,-]/).map(&:to_i);(a<=d&&c<=b)?1:0}.sum

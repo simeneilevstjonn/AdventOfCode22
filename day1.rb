@@ -1,1 +1,1 @@
-p `cat`.split(/\n$/).map{|i|i.split.sum(&:to_i)}.max(3).sum
+p`cat`.split(/\n$/).map{|i|i.split.sum(&:to_i)}.max(3).sum

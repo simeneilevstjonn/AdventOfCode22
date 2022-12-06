@@ -1,6 +1,1 @@
-a=gets
-i=0
-while a[i,14].chars.uniq.size<14 do
-i+=1
-end
-puts 14+i
+a=gets.chars;(0..).map{|i|(p i+14;exit)if a[i,14].uniq.size>13}

@@ -1,1 +1,6 @@
-a=gets;p (13...a.size).filter_map{|i|i+1 if a[i-13..i].chars.uniq.size>13}[0]
+a=gets
+i=13
+while a[i-13..i].chars.uniq.size<14 do
+i+=1
+end
+puts 1+i

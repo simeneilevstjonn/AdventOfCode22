@@ -19,11 +19,9 @@ end
 def dfs(m,d)
     t = 0
     m.each{|k,a|t+=a if a.is_a? Integer;t+=dfs(a,d)unless a.is_a? Integer}
-    if t <=100000
-        d.append(t)
-    end
+    d.append(t)
     return t
 end
 d=[]
-dfs(t,d)
-p d.sum
+s=30000000-70000000+dfs(t,d)
+p d.filter{|x|x>=s}.min

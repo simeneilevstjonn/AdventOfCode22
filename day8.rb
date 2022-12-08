@@ -1,18 +1,15 @@
 g=$<.map{|x|x.chomp.bytes}
-c=[]
-for i in 0...g.size
-    for j in 0...g[0].size
+p (0...g.size).map{
+    |i|(0...g[0].size).map{|j|
         s = [g[i][0...j].reverse, g[i][j+1..-1], g[0...i].map{|x|x[j]}.reverse, g[i+1..-1].map{|x|x[j]}]
-        a=1
-        next if s.filter(&:empty?).any?
-        for x in s
+        a=s.filter(&:empty?).any? ? 0:1;
+        s.map{|x|
             k = 0
-            while k < x.size and x[k] < g[i][j]
-                k+=1
-            end
-            a*=k + (k==x.size ? 0:1)
-        end
-        c+=[a]
-    end
-end
-p c.max
+            (0...x.size).map{|c|
+                k=c;break if x[k]>=g[i][j]
+            }
+            a*=k+(k==x.size ? 0:1)
+        }
+        a
+    }.max
+}.max

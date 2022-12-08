@@ -1,21 +1,33 @@
 g=$<.map(&:bytes)
-c=0
+c=[]
 for i in 0...g.size
     for j in 0...g[0].size
-        h = g[i][j]
-        # Slice on top
-        if ((g[i][0...j].max||10) < h)
-            c+=1
-        # Slice below
-        elsif ((g[i][j+1..-1].max||10) < h)
-            c+=1
-        # Slice on left
-        elsif ((g[0...i].map{|x|x[j]}.max||10) < h)
-            c+=1
-        # Slice of right
-        elsif ((g[i+1..-1].map{|x|x[j]}.max||10) < h)
-            c+=1
-        end
+        s=[0,0,0,0]
+        x = g[i][0...j].reverse
+        for k in 1...x.size
+            if x[k] > x[k-1]
+                s[0] += 1
+            end
+        end    
+        x=g[i][j+1..-1]
+        for k in 1...x.size
+            if x[k] > x[k-1]
+                s[1] += 1
+            end
+        end   
+        x = g[0...i].map{|x|x[j]}.reverse
+        for k in 1...x.size
+            if x[k] > x[k-1]
+                s[2] += 1
+            end
+        end 
+        x=g[i+1..-1].map{|x|x[j]}
+        for k in 1...x.size
+            if x[k] > x[k-1]
+                s[3] += 1
+            end
+        end 
+        c+=[s.inject(:*)]
     end
 end
-p c
+p c.max

@@ -1,5 +1,5 @@
 data = [[i.split()[0], int(i.split()[1])] for i in open("testdata9.txt","r").read().split("\n")]
-rope = [[0, 0]] * 10
+rope = [[0,0] for _ in range(10)]
 tailvisits = []
 
 for direction, distance in data:

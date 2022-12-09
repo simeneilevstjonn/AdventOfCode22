@@ -16,25 +16,9 @@ for direction, distance in data:
         
         # Move tail if not adjacent. Eucledean distance above sqrt(2)
         if (tail[0] - head[0])**2 + (tail[1] - head[1])**2 > 2:
-            # Linear
-            if tail[0] == head[0]:
-                tail[1] += (head[1] > tail[1]) - (head[1] < tail[1])
-            elif tail[1] == head[1]:
-                tail[0] += (head[0] > tail[0]) - (head[0] < tail[0])
-            # Diagonal
-            else:
-                if (head[0] > tail[0]) and (head[1] > tail[1]):
-                    tail[0] += 1
-                    tail[1] += 1
-                elif (head[0] > tail[0]) and (head[1] < tail[1]):
-                    tail[0] += 1
-                    tail[1] -= 1
-                elif (head[0] < tail[0]) and (head[1] < tail[1]):
-                    tail[0] -= 1
-                    tail[1] -= 1
-                elif (head[0] < tail[0]) and (head[1] > tail[1]):
-                    tail[0] -= 1
-                    tail[1] += 1
+            tail[0] += (head[0] > tail[0]) - (head[0] < tail[0])
+            tail[1] += (head[1] > tail[1]) - (head[1] < tail[1])
+            
 
         # Add tails position
         tailvisits.append((tail[0], tail[1]))

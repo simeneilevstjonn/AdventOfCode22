@@ -11,6 +11,6 @@ p $<.map{|a|d,b=a.split;(1..b.to_i).map{
             t[0] += c>y ? 1: y>c ? -1:0
             t[1] += e>x ? 1: x>e ? -1:0
         end
-        r[9]
+        r[9].dup
     }
 }}.uniq.size

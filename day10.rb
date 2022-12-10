@@ -1,3 +1,2 @@
-x=[1]
-$<.map{|y|a,b=y.split;x+=[x[-1]];x+=[x[-1]+b.to_i]if a<?b}
-(0..239).map{|i|(i%40-x[i])**2<2 ? ?# : ?.}.each_slice(40){|y|p y.join}
+x=1;c=0
+$<.map{|y|a,b=y.split;print (c%40-x)**2<2 ? ?# : ?.;c+=1;(print (c%40-x)**2<2 ? ?# : ?.;c+=1;x+=b.to_i) if a<?b}

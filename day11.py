@@ -8,6 +8,7 @@ class Monkey:
         self.mod = -1
         self.operation = None
         self.id = -1
+        self.gmod = -1
 
     def inspect(self):
         for item in self.queue:
@@ -16,7 +17,7 @@ class Monkey:
             item = eval(self.operation)
 
             #print("After op", item)
-            item //= 3
+            item %= self.gmod
             #print("After div", item)
             if item % self.mod == 0:
                 #print("Div by", self.mod, "pass to", self.ifTrue)
@@ -48,8 +49,16 @@ for data in raw:
 
     monkeys.append(m)
 
-for i in range(20):
-    #print("Round begin", i)
+globmod = 1
+for m in monkeys:
+    globmod *= m.mod
+
+for m in monkeys:
+    m.gmod = globmod
+
+
+for i in range(10000):
+    print("Round begin", i)
     for m in monkeys:
         m.inspect()
     #print()

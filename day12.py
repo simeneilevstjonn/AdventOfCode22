@@ -20,7 +20,7 @@ weight[start[0]][start[1]] = 0
 queue = [start]
 
 while len(queue):
-    y, x = queue.pop()
+    y, x = queue.pop(0)
 
     if not vis[y][x]:
         edge = ([(y - 1, x)] if y != 0 else []) + ([(y + 1, x)] if y != len(grid) - 1 else []) + ([(y, x - 1)] if x != 0 else []) + ([(y, x + 1)] if x != len(grid[0]) - 1 else [])

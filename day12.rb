@@ -6,6 +6,7 @@ s=[]
 (0...h).map{|y|(0...w).map{|x|(s.append [y,x];g[y][x]=97)if g[y][x]==83;(e=[y,x];g[y][x]=122)if g[y][x]=69}}
 p s.map{|y,x|
     d=[[1e9]*w]*h
+    d[y][x]=0
     v=[[0]*w]*h
     q=Queue.new
     q.push([y,x])

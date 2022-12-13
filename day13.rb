@@ -1,10 +1,11 @@
 e,f=[[2]],[[6]]
 c=->(a,b){
     (0...[a.size,b.size].min).map{|i|
-        g,h=[a[i],b[i]].map{|x|x.class==Integer}
-        (return -1 if a[i]<b[i];return 1 if a[i]>b[i];next)if g&&h;
-        a[i]=[a[i]]if g;
-        b[i]=[b[i]]if h;
+        m,n=a[i],b[i]
+        g,h=[m,n].map{|x|x.class==Integer}
+        (return -1 if m<n;return 1 if m>n;next)if g&&h;
+        a[i]=[m]if g;
+        b[i]=[n]if h;
         q=c.(a[i],b[i]);
         return q if q!=0
     };

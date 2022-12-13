@@ -1,5 +1,4 @@
 e,f=[[2]],[[6]]
-l=$<.map{|x|eval x}.filter{|x|x}+[e,f]
 c=->(a,b){
     (0...[a.size,b.size].min).map{|i|
         g,h=[a[i],b[i]].map{|x|x.class==Integer}
@@ -11,6 +10,5 @@ c=->(a,b){
     };
     return b.size==a.size ? 0 : (b.size > a.size ? -1 : 1)
 }
-
-l.sort!{|a,b|c.(a,b)}
+l=($<.map{|x|eval x}.filter{|x|x}+[e,f]).sort{|a,b|c.(a,b)}
 p (1+l.index(e))*(1+l.index(f))

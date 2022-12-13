@@ -8,7 +8,7 @@ c=->(a,b){
         q=c.(a[i],b[i]);
         return q if q!=0
     };
-    return b.size==a.size ? 0 : (b.size > a.size ? -1 : 1)
+    return b.size==a.size ? 0: b.size>a.size ? -1:1
 }
 l=($<.map{|x|eval x}.filter{|x|x}+[e,f]).sort{|a,b|c.(a,b)}
 p (1+l.index(e))*(1+l.index(f))

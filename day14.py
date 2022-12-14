@@ -39,18 +39,18 @@ for line in data:
 
 def sandmulate(y, x, matrix):
     # Outside grid
-    if x < 1 or y > len(matrix) - 1 or x >= len(matrix[0]):
+    if x < 1 or y >= len(matrix) - 1 or x >= len(matrix[0]):
         return False
     
     # Space below
-    if not matrix[y - 1][x]:
-        return sandmulate(y - 1, x, matrix)
+    if not matrix[y + 1][x]:
+        return sandmulate(y + 1, x, matrix)
     # Space below left
-    elif not matrix[y - 1][x - 1]:
-        return sandmulate(y - 1, x - 1, matrix)
+    elif not matrix[y + 1][x - 1]:
+        return sandmulate(y + 1, x - 1, matrix)
     # Space below right
-    elif not matrix[y - 1][x + 1]:
-        return sandmulate(y - 1, x + 1, matrix)
+    elif not matrix[y + 1][x + 1]:
+        return sandmulate(y + 1, x + 1, matrix)
     # Settle
     else:
         matrix[y][x] = True

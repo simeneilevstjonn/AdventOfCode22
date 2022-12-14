@@ -13,9 +13,7 @@ for i in data:
         maxy = max(maxy, j[0])
 
 # Create a matrix of minimum size with one in padding in all directions
-matrix = [[False] * (maxx - minx + 3) for _ in range(maxy - miny + 3)]
-
-# A point (y, x) will be at (y - miny + 1, x - minx + 1)
+matrix = [[i == maxy + 2] * 1000 for i in range(maxy + 3)]
 
 for line in data:
     for i in range(1, len(line)):
@@ -25,23 +23,19 @@ for line in data:
         if y0 == y1:
             if x0 < x1:
                 for j in range(x0, x1 + 1):
-                    matrix[y0 - miny + 1][j - minx + 1] = True
+                    matrix[y0][j] = True
             else:
                 for j in range(x1, x0 + 1):
-                    matrix[y0 - miny + 1][j - minx + 1] = True
+                    matrix[y0][j] = True
         elif x0 == x1:
             if y0 < y1:
                 for j in range(y0, y1 + 1):
-                    matrix[j - miny + 1][x0 - minx + 1] = True
+                    matrix[j][x0] = True
             else:
                 for j in range(y1, y0 + 1):
-                    matrix[j - miny + 1][x0 - minx + 1] = True
+                    matrix[j][x0] = True
 
 def sandmulate(y, x, matrix):
-    # Outside grid
-    if x < 1 or y >= len(matrix) - 1 or x >= len(matrix[0]):
-        return False
-    
     # Space below
     if not matrix[y + 1][x]:
         return sandmulate(y + 1, x, matrix)
@@ -57,7 +51,8 @@ def sandmulate(y, x, matrix):
         return True
 
 i = 0
-while sandmulate(0 - miny + 1, 501 - minx, matrix):
+while not matrix[0][500]:
+    sandmulate(0, 500, matrix)
     i += 1
 
 print(i)

@@ -18,24 +18,28 @@ for i in raw:
 
     graph[id] = Node(id, flow, graph, edges)
 
-flowRate = 0
-cumulativeFlow = 0
-active = graph["AA"]
-i = 0
+cumulativeMax = 0
+queue = []
 
-while i < 30:
-    # Open this node's valve if has a grater flow than any of its neighbours
-    # Find neightbour with max flow
-    bestNb = max([graph[id] for id in active.edges], key=lambda x : x.flow)
+# Queue entry format: [vertex, time, flow, cumulative, opened]
 
-    if bestNb.flow <= active.flow:
-        flowRate += active.flow
-        active.flow = 0
-        i += 1
-        cumulativeFlow += flowRate
+queue.append([graph["AA"], 30, 0, 0, []])
 
-    active = bestNb
-    i += 1
-    cumulativeFlow += flowRate
-    
-print(cumulativeFlow)
+while len(queue):
+    vertex, time, flow, cumulative, opened = queue.pop(0)
+
+    print(len(queue))
+
+    if time < 1:
+        cumulativeMax = max(cumulative, cumulativeMax)
+        continue
+
+    for e in vertex.edges:
+        # Push directly
+        queue.append([graph[e], time - 1, flow, cumulative + flow, opened[::]])
+
+        # If the current valve is not opened
+        if vertex not in opened and vertex.flow != 0:
+            queue.append([graph[e], time - 2, flow + vertex.flow, cumulative + flow * 2 + vertex.flow, opened[::] + [vertex]])
+
+print(cumulativeMax)

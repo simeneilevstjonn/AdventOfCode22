@@ -26,6 +26,8 @@ while len(queue):
     if space[z][y][x]:
         area += 1
         continue
+
+    visited[z][y][x] = True
     
     if x != 0:
         queue.append([z, y, x - 1])

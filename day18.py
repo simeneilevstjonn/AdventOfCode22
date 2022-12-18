@@ -15,28 +15,29 @@ for x, y, z in points:
 
 area = 0
 
-def dfs(z, y, x):
+queue = [[0, 0, 0]]
+
+while len(queue):
+    z, y, x = queue.pop(0)
+
     if visited[z][y][x]:
-        return
-    
+        continue
+
     if space[z][y][x]:
-        global area
         area += 1
-        return
+        continue
     
     if x != 0:
-        dfs(z, y, x - 1)
+        queue.append([z, y, x - 1])
     if y != 0:
-        dfs(z, y - 1, x)
+        queue.append([z, y - 1, x])
     if z != 0:
-        dfs(z - 1, y, x)
+        queue.append([z - 1, y, x])
     if x != size - 1:
-        dfs(z, y, x + 1)
+        queue.append([z, y, x + 1])
     if y != size - 1:
-        dfs(z, y + 1, x)
+        queue.append([z, y + 1, x])
     if z != size - 1:
-        dfs(z + 1, y, x)
-
-dfs(0,0,0)
+        queue.append([z + 1, y, x])
 
 print(area)

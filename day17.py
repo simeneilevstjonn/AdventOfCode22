@@ -1,11 +1,11 @@
-sequence = [i == ">" for i in open("testdata17.txt", "r").read()]
+sequence = [i == ">" for i in open("data17.txt", "r").read()]
 
 idx = 0
 
 def next():
     global idx
     idx += 1
-    return sequence[(i - 1) % len(sequence)]
+    return sequence[(idx - 1) % len(sequence)]
 
 matrix = []
 
@@ -35,16 +35,12 @@ def fitRock(coords, rock):
                         break
 
             if allow:
-                print("moves right")
+                #print("moves right")
                 coords = (coords[0], coords[1] + 1)
-            else:
-                print("blocked right") 
-        else:
-            print("blocked right")   
     else:
         # Left movement
-        # Hits wall if x - len rock[0] is 0
-        if coords[1] - len(rock[0]) != 0:
+        # Hits wall if x - len rock[0] is -1
+        if coords[1] - len(rock[0]) != -1:
             allow = True
             # Test each row
             for y in range(len(rock)):
@@ -56,13 +52,8 @@ def fitRock(coords, rock):
                         break
 
             if allow:
-                print("moves left")
+                #print("moves left")
                 coords = (coords[0], coords[1] - 1)
-            else:
-                print("blocked left")
-
-        else:
-            print("blocked left") 
 
     # Test the possibility of downward movement
     if coords[0] != 0:
@@ -77,11 +68,11 @@ def fitRock(coords, rock):
                     break
 
         if allow:
-            print("moves down")
+            #print("moves down")
             coords = (coords[0] - 1, coords[1])
             return fitRock(coords, rock)
 
-    print("locks in place")
+    #print("locks in place")
     # Fit the rock
     for y in range(len(rock)):
         for x in range(len(rock[0])):
@@ -97,17 +88,15 @@ rocks = [
     [[True, True], [True, True]]
 ]
 
-for i in range(2):
-    print("Begins rock", i)
+for i in range(2022):
+    #print("Begins rock", i, "seq idx", idx)
     # Coords start as (y, x) (h + 3, 4)
     # Make sure that there are 7 available rows
     while len(matrix) - height() < 7:
         matrix.append([False] * 7)
     
     # Simulate the rock
-    fitRock((height() + 3, 4), rocks[i % 5])
-    print()
+    fitRock((height() + 3, 1 + len(rocks[i % 5][0])), rocks[i % 5])
+    #print()
 
 print(height())
-for r in matrix[::-1]:
-    print(*["#" if j else "." for j in r])

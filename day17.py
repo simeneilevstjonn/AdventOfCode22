@@ -97,7 +97,7 @@ rocks = [
     [[True, True], [True, True]]
 ]
 
-for i in range(2022):
+for i in range(2):
     print("Begins rock", i)
     # Coords start as (y, x) (h + 3, 4)
     # Make sure that there are 7 available rows
@@ -109,3 +109,5 @@ for i in range(2022):
     print()
 
 print(height())
+for r in matrix[::-1]:
+    print(*["#" if j else "." for j in r])

@@ -1,13 +1,13 @@
 points = [list(map(int, i.split(","))) for i in open("data18.txt", "r").read().split("\n")]
 
-size = max([max(i) for i in points]) + 2
+size = max([max(i) for i in points]) + 3
 
 space = [[[False] * size for i in range(size)] for j in range(size)]
 visited = [[[False] * size for i in range(size)] for j in range(size)]
 
 
 for x, y, z in points:
-    space[z][y][x] = True
+    space[z + 1][y + 1][x + 1] = True
 
 area = 0
 

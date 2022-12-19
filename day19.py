@@ -65,8 +65,8 @@ def efficientSimulate(blueprint):
     robots = [1, 0, 0, 0]
     resources = [0, 0, 0, 0]
 
-    for t in range(30):
-        print(robots)
+    for t in range(24):
+        print("before it", t, "res", resources, "rob", robots)
         # Collect resouces
         for i in range(4):
             resources[i] += robots[i]
@@ -127,6 +127,7 @@ def efficientSimulate(blueprint):
 
                 # Maybe build ore bot. Could also be that it is caught otherwhere
     
+    print(resources[3])
     return resources[3]
 
 

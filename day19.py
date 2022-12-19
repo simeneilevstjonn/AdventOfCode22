@@ -66,25 +66,27 @@ def efficientSimulate(blueprint):
     resources = [0, 0, 0, 0]
 
     for t in range(30):
+        print(robots)
         # Collect resouces
         for i in range(4):
             resources[i] += robots[i]
         
         # Make geode bot if possible
-        if resources[0] - robots[0] >= blueprint[5] and resources[3] - robots[3] >= blueprint[6]:
+        if resources[0] - robots[0] >= blueprint[5] and resources[2] - robots[2] >= blueprint[6]:
             robots[3] += 1
             resources[0] -= blueprint[5]
-            resources[1] -= blueprint[6]
+            resources[2] -= blueprint[6]
             continue
         
         # Determine what is limiting geode production
         rescpy = resources[::]
-        while not (rescpy[0] - robots[0] >= blueprint[5] and rescpy[3] - robots[3] >= blueprint[6]):
+        while not (rescpy[0] - robots[0] >= blueprint[5] or rescpy[2] - robots[2] >= blueprint[6]):
             for i in range(4):
                 rescpy[i] += robots[i]
+            
         
         # Limited by ore
-        if rescpy[3] - robots[3] >= blueprint[6]:
+        if rescpy[2] - robots[2] >= blueprint[6]:
             # Build ore bot if possible
             if resources[0] - robots[0] >= blueprint[1]:
                 robots[0] += 1
@@ -94,7 +96,7 @@ def efficientSimulate(blueprint):
         # Limited by obsidian
         else:
             # Build obsidian bot if possible
-            if resources[0] - robots[0] >= blueprint[3] and resources[2] - robots[2] >= blueprint[4]:
+            if resources[0] - robots[0] >= blueprint[3] and resources[1] - robots[1] >= blueprint[4]:
                 robots[2] += 1
                 resources[0] -= blueprint[3]
                 resources[1] -= blueprint[4]
@@ -102,12 +104,12 @@ def efficientSimulate(blueprint):
                 
             # Find out what is limiting obsidian
             rescpy1 = resources[::]
-            while not (rescpy1[0] - robots[0] >= blueprint[3] and rescpy1[2] - robots[2] >= blueprint[4]):
+            while not (rescpy1[0] - robots[0] >= blueprint[3] or rescpy1[1] - robots[1] >= blueprint[4]):
                 for i in range(4):
                     rescpy1[i] += robots[i]
             
             # Limited by ore
-            if rescpy1[2] - robots[2] >= blueprint[4]:
+            if rescpy1[1] - robots[1] >= blueprint[4]:
                 # Build ore bot if possible
                 if resources[0] - robots[0] >= blueprint[1]:
                     robots[0] += 1

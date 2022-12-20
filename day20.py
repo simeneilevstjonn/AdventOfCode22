@@ -15,7 +15,7 @@ for n in cpy:
     #print("Active", n.number)
     i = -1
     for j in range(len(data)):
-        if data[j].number == n.number:
+        if data[j] == n:
             i = j
             break
 

@@ -1,6 +1,6 @@
 class EncryptedCoordinateNumber:
     def __init__(self, number):
-        self.number = int(number)
+        self.number = int(number) * 811589153
 
 data = list(map(EncryptedCoordinateNumber, open("data20.txt", "r").read().split("\n")))
 
@@ -11,25 +11,26 @@ l = len(data)
 #print(*map(lambda x : x.number, data))
 #print()
 
-for n in cpy:
-    #print("Active", n.number)
-    i = -1
-    for j in range(len(data)):
-        if data[j] == n:
-            i = j
-            break
+for _ in range(10):
+    for n in cpy:
+        #print("Active", n.number)
+        i = -1
+        for j in range(len(data)):
+            if data[j] == n:
+                i = j
+                break
 
-    #data[i], data[(i + n.number) % l] = data[(i + n.number) % l], data[i]
+        #data[i], data[(i + n.number) % l] = data[(i + n.number) % l], data[i]
 
-    sign = n.number // abs(n.number) if n.number != 0 else 0
+        sign = n.number // abs(n.number) if n.number != 0 else 0
 
-    for j in range(abs(n.number)):
-        data[(i + sign * j) % l], data[(i + sign * (j + 1)) % l] = data[(i + sign * (j + 1)) % l], data[(i + sign * j) % l]
+        for j in range(abs(n.number) % (l - 1)):
+            data[(i + sign * j) % l], data[(i + sign * (j + 1)) % l] = data[(i + sign * (j + 1)) % l], data[(i + sign * j) % l]
 
 
-    #print(*map(lambda x : x.number, data))
+        #print(*map(lambda x : x.number, data))
 
-    #print()
+        #print()
 
 
 idx = -1

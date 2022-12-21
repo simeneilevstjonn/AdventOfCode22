@@ -1,3 +1,5 @@
+import sympy as s
+
 class Node:
     def __init__(self, data, tree):
         if data.isnumeric():
@@ -16,7 +18,7 @@ class Node:
         if self.val is not None:
             return self.val
         
-        return eval(f"{self.tree[self.left].value()} {self.op} {self.tree[self.right].value()}")
+        return eval(f"({self.tree[self.left].value()}) {self.op} ({self.tree[self.right].value()})")
 
 
 tree = {}
@@ -25,4 +27,8 @@ for x in open("data21.txt", "r").read().split("\n"):
     id, data = x.split(": ")
     tree[id] = Node(data, tree)
 
-print(tree["root"].value())
+x = s.Symbol("x")
+
+tree["humn"].val = x
+
+print(int(s.solve(tree[tree["root"].left].value() - tree[tree["root"].right].value(), x)[0]))

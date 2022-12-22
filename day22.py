@@ -13,6 +13,13 @@ x = -1
 sy = len(grid)
 sx = len(grid[0])
 
+for i in grid:
+    sx = max(sx, len(i))
+
+for i in range(len(grid)):
+    if len(grid[i]) < sx:
+        grid[i] += [" "] * (sx - len(grid[i]))
+
 for i in range(len(grid[0])):
     if grid[0][i] == ".":
         x = i

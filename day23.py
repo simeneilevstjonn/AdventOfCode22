@@ -5,9 +5,9 @@ for i, x in enumerate(open("data23.txt", "r").read().split("\n")):
     for j, y in enumerate(x):
         if y == "#":
             elves.append((i, j))
-            matrix[i][j] = True
+            matrix[i + 1000][j + 1000] = True
 
-m = lambda y, x : not matrix[y][x]
+m = lambda y, x : not matrix[y + 1000][x + 1000]
 
 
 i = 0
@@ -49,19 +49,18 @@ while True:
 
     # Move to the proposed locations
     for j, l in enumerate(proplocs):
-        if proplocs.count(l) == 1:
+        if proplocs.count(l) == 1 and l != elves[j]:
             y0, x0 = elves[j]
-            matrix[y0][x0] = False
+            matrix[y0 + 1000][x0 + 1000] = False
             elves[j] = l
             y, x = l
-            matrix[y][x] = True
+            matrix[y + 1000][x + 1000] = True
             moved += 1
-    
-    print("i", i, "moved", moved)
+
 
     if moved == 0:
         break
 
     i += 1
 
-print(i)
+print(i + 1)

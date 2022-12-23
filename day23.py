@@ -6,8 +6,8 @@ for i, x in enumerate(open("data23.txt", "r").read().split("\n")):
             elves.append((i, j))
 
 
-
-for i in range(10):
+i = 0
+while True:
     proplocs = []
 
     for y, x in elves:
@@ -41,14 +41,19 @@ for i in range(10):
             if len(proplocs) == l:
                 proplocs.append((y, x))
     
+    moved = 0
+
     # Move to the proposed locations
-    for i, l in enumerate(proplocs):
+    for j, l in enumerate(proplocs):
         if proplocs.count(l) == 1:
-            elves[i] = l
+            elves[j] = l
+            moved += 1
+    
+    print("i", i, "moved", moved)
 
-may = max(elves, key=lambda x : x[0])[0]
-miy = min(elves, key=lambda x : x[0])[0]
-maX = max(elves, key=lambda x : x[1])[1]
-mix = min(elves, key=lambda x : x[1])[1]
+    if moved == 0:
+        break
 
-print((may - miy + 1) * (maX - mix + 1) - len(elves))
+    i += 1
+
+print(i)

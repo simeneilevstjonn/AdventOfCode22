@@ -77,14 +77,23 @@ while queue:
 
     y, x = c.y, c.x
 
+    if visited[y][x]:
+        continue
+
     visited[y][x] = True
 
     # Each child
     children = [(y, x + 1), (y, x - 1), (y + 1, x), (y - 1, x)]
 
-    for cy, cx in children:
-        if grid[cy][cx] != "#" and not visited[cy][cx] and not blizzardContains(c.dist() + 1, cy, cx):
-            distance[cy][cx] = c.dist() + 1
-            heapq.heappush(queue, GridCoordinate(cy, cx))
+    blzd = 4
+    i = 1
+    while blzd == 4:
+        blzd = 0
+        for cy, cx in children:
+            blzd += blizzardContains(c.dist() + i, cy, cx)
+            if grid[cy][cx] != "#" and not visited[cy][cx] and not blizzardContains(c.dist() + i, cy, cx):
+                distance[cy][cx] = min(c.dist() + i, distance[cy][cx])
+                heapq.heappush(queue, GridCoordinate(cy, cx))
+        i += 1
 
 print(distance[-1][-2])

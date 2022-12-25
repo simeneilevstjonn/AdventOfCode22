@@ -17,7 +17,7 @@ def decimalToSNAFU(n):
         carry = 0
 
         if d < 3:
-            s = str(d + carry) + s
+            s = str(d) + s
         elif d == 3:
             s = "=" + s
             carry = 1
